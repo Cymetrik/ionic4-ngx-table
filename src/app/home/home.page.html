@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Ionic Blank
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ngx-datatable #table class="material expandable"
+    [rows]="rows"
+    [rowIdentity]="getId"
+    [scrollbarH]="true"
+    [columnMode]="'force'"
+    [selectionType]="'checkbox'"
+    [selectAllRowsOnPage]="false"
+    (select)='onSelect($event)'
+    [headerHeight]="48"
+    [footerHeight]="'auto'"
+    [rowHeight]="48"
+    [limit]="dataTable?.page?.limit"
+    [externalPaging]="true"
+    [offset]="dataTable?.page.offset"
+    [count]="dataTable?.page.count"
+    (page)="setPage($event)">
+    <!-- Checkbox -->
+    <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+        <!--
+        <ng-template ngx-datatable-header-template let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+            <ion-checkbox [checked]="allRowsSelected" (ionChange)="selectFn(!allRowsSelected)"></ion-checkbox>
+            <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
+        </ng-template>
+        -->
+        <ng-template ngx-datatable-cell-template let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
+            <!--<ion-checkbox [checked]="isSelected" (ionChange)="onCheckboxChangeFn($event)"></ion-checkbox>-->
+            <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
+        </ng-template>
+    </ngx-datatable-column>
+    <!-- Columns -->
+    <ngx-datatable-column name="ID" prop="id"></ngx-datatable-column>
+    <ngx-datatable-column name="Name" prop="name"></ngx-datatable-column>
+    
+</ngx-datatable>
+</ion-content>
